@@ -453,8 +453,10 @@ export function renderAriaTree(ariaSnapshot: AriaSnapshot, options?: { mode?: 'r
     if (options?.forAI && receivesPointerEvents(ariaNode)) {
       const ref = ariaNode.ref;
       const cursor = hasPointerCursor(ariaNode) ? ' [cursor=pointer]' : '';
+      const rect = ariaNode.box.rect;
+      const rectStr = rect ? `[rect=(x=${rect.x}, y=${rect.y}, width=${rect.width}, height=${rect.height})]` : '';
       if (ref)
-        key += ` [ref=${ref}]${cursor}`;
+        key += ` [ref=${ref}]${rectStr}${cursor}`;
     }
 
     const escapedKey = indent + '- ' + yamlEscapeKeyIfNeeded(key);
